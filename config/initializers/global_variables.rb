@@ -4,7 +4,7 @@ end
 
 if Rails.env.production?
 	$websocket_server_config = {
-		port: 3001,
+		port: 3000,
 		host: "window.location.host",
 		path: "\"/websocket\""
 	}

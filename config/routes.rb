@@ -5,4 +5,5 @@ Cathat::Application.routes.draw do
   end
   resources :messages
   match 'update_position', to: 'users#update_position', via: :put
+  match 'connected_users', to: 'users#connected', via: :get
 end
