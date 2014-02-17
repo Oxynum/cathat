@@ -1,6 +1,6 @@
 window.Chat = {}
 
-window.dispatcher = new WebSocketRails('0.0.0.0:3000/websocket')
+window.dispatcher = new WebSocketRails(websocket_server_config.host + ':' + websocket_server_config.port + websocket_server_config.path)
 latitude= 0
 longitude = 0
 dispatcher.on_open = (data) ->
