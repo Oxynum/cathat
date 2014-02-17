@@ -1,0 +1,8 @@
+- content_for :head do
+  = javascript_include_tag "https://maps.googleapis.com/maps/api/js?key=AIzaSyB84lljfiXvGrYVd-CY-3Iz4crL5fZFcZk&sensor=true"
+  =javascript_include_tag "pages/pages_manifest"
+
+#map_canvas
+#messages_list
+#new_message
+  = render template: "messages/new"
