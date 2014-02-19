@@ -11,4 +11,6 @@ test:
 
 production:
   <<: *common
+  username: rails
+  password: azertyuiop
   database: cathat_prod
