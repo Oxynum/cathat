@@ -4,6 +4,7 @@ OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
 Devise.setup do |config|
   require "omniauth-facebook"
   require "omniauth-twitter"
+  require "omniauth-google-oauth2"
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
@@ -232,6 +233,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   config.omniauth :facebook, '596422787108794', 'c6fc24a983e779148ee535db027506d5'
   config.omniauth :twitter, 'Q0hvQHNfZ2iyBUqzfJr2yA', 'tQeyYTB8Ca3FL8fOLL5X8Qf45koSq19K51SeJKcJl6Y'
+  config.omniauth :google_oauth2, '602467439791-p9up91q55b09im30lv5tvnfes1rk8i9i.apps.googleusercontent.com', 'gfz8Pn1zrA5d6M1OLFC0yq-g'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
