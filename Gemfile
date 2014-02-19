@@ -36,4 +36,6 @@ gem 'websocket-rails'
 
 gem 'formtastic'
 gem 'rails_12factor', group: :production
+gem 'omniauth-facebook'
+
 ruby "2.0.0"
