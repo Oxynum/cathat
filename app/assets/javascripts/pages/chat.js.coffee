@@ -1,6 +1,6 @@
 window.Chat = {}
 
-window.dispatcher = new WebSocketRails('cathat.herokuapp.com:3000/websocket')
+window.dispatcher = new WebSocketRails(window.location.host + "/websocket")
 latitude= 0
 longitude = 0
 dispatcher.on_open = (data) ->
