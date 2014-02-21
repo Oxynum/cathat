@@ -1,0 +1,1 @@
+var websocket_server_config={port:3e3,host:window.location.host,path:"/websocket"};
