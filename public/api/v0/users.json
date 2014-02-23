@@ -1,7 +1,7 @@
 {
   "apiVersion": "0.1",
   "swaggerVersion": "1.2",
-  "basePath": "http://0.0.0.0:3000/",
+  "basePath": "http://cathat.herokuapp.com/",
   "resourcePath": "users",
   "apis": [
     {

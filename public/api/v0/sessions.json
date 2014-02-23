@@ -1,7 +1,7 @@
 {
   "apiVersion": "0.1",
   "swaggerVersion": "1.2",
-  "basePath": "http://0.0.0.0:3000/",
+  "basePath": "http://cathat.herokuapp.com/",
   "resourcePath": "sessions",
   "apis": [
     {
@@ -50,7 +50,7 @@
             },
             {
               "paramType": "form",
-              "name": "user[password]",
+              "name": "user[authentication_token]",
               "type": "string",
               "description": null,
               "required": true
