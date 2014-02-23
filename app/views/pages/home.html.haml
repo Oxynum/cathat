@@ -6,3 +6,5 @@
 #messages_list
 #new_message
   = render template: "messages/new"
+
+= link_to('Logout', destroy_user_session_path, :method => :delete) 
