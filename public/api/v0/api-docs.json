@@ -1,0 +1,19 @@
+{
+  "apiVersion": "0.1",
+  "swaggerVersion": "1.2",
+  "basePath": "http://cathat.herokuapp.com/",
+  "apis": [
+    {
+      "path": "users/registrations.{format}",
+      "description": "User Registration"
+    },
+    {
+      "path": "messages.{format}",
+      "description": "Messages Management"
+    },
+    {
+      "path": "users.{format}",
+      "description": "User Management"
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "apiVersion": "0.1",
+  "swaggerVersion": "1.2",
+  "basePath": "http://cathat.herokuapp.com/",
+  "resourcePath": "users",
+  "apis": [
+    {
+      "path": "users",
+      "operations": [
+        {
+          "parameters": [
+
+          ],
+          "summary": "Fetches the list of all connected users (id, email, latitude, longitude)",
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "message": "Not Acceptable"
+            }
+          ],
+          "method": "get",
+          "nickname": "Users#index"
+        }
+      ]
+    },
+    {
+      "path": "users/{id}",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "User Id",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[latitude]",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "user[longitude]",
+              "type": "string",
+              "description": null,
+              "required": false
+            }
+          ],
+          "summary": "Change the latitude and longitude of a user",
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "message": "Not Acceptable"
+            }
+          ],
+          "method": "patch",
+          "nickname": "Users#update"
+        }
+      ]
+    },
+    {
+      "path": "users/{id}",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "User Id",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[latitude]",
+              "type": "string",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "user[longitude]",
+              "type": "string",
+              "description": null,
+              "required": false
+            }
+          ],
+          "summary": "Change the latitude and longitude of a user",
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "message": "Not Acceptable"
+            }
+          ],
+          "method": "put",
+          "nickname": "Users#update"
+        }
+      ]
+    }
+  ]
+}

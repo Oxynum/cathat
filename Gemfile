@@ -40,5 +40,5 @@ gem 'rails_12factor', group: :production
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem "omniauth-google-oauth2"
-
+gem 'swagger-docs'
 ruby "2.0.0"
