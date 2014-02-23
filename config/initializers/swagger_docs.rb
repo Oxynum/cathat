@@ -4,7 +4,7 @@ Swagger::Docs::Config.register_apis({
     # the output location where your .json files are written to
     :api_file_path => "public/api/v0/", 
     # the URL base path to your API 
-    :base_path => "http://0.0.0.0:3000", 
+    :base_path => "http://cathat.herokuapp.com", 
     # if you want to delete all .json files at each generation
     :clean_directory => false,
     :formatting => :pretty
@@ -13,6 +13,6 @@ Swagger::Docs::Config.register_apis({
 
 class Swagger::Docs::Config
   def self.transform_path(path)
-    "http://0.0.0.0:3000/api/#{path}"
+    "http://cathat.herokuapp.com/api/#{path}"
   end
 end
