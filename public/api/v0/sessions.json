@@ -2,27 +2,13 @@
   "apiVersion": "0.1",
   "swaggerVersion": "1.2",
   "basePath": "http://0.0.0.0:3000/",
-  "resourcePath": "messages",
+  "resourcePath": "sessions",
   "apis": [
     {
-      "path": "messages",
+      "path": "users/sign_in",
       "operations": [
         {
           "parameters": [
-            {
-              "paramType": "form",
-              "name": "latitude",
-              "type": "string",
-              "description": null,
-              "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "longitude",
-              "type": "string",
-              "description": null,
-              "required": true
-            },
             {
               "paramType": "form",
               "name": "user[email]",
@@ -32,15 +18,47 @@
             },
             {
               "paramType": "form",
-              "name": "user[authentication_token]",
+              "name": "user[password]",
               "type": "string",
               "description": null,
               "required": true
             }
           ],
-          "summary": "Get the last 5 messages in the area specified",
-          "method": "get",
-          "nickname": "Messages#index"
+          "summary": "Create a new session for the user whose email is specified",
+          "responseMessages": [
+            {
+              "code": 406,
+              "message": "Not Acceptable"
+            }
+          ],
+          "method": "post",
+          "nickname": "Users::Sessions#create"
+        }
+      ]
+    },
+    {
+      "path": "users/sign_out",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "user[email]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[password]",
+              "type": "string",
+              "description": null,
+              "required": true
+            }
+          ],
+          "summary": "Delete the user sessions",
+          "method": "delete",
+          "nickname": "Users::Sessions#destroy"
         }
       ]
     }

@@ -1,18 +1,22 @@
 class UsersController < ApplicationController
 
+    before_filter :authenticate_user_from_token!
     before_filter :authenticate_user!
 
     swagger_controller :users, "User Management"
 
     swagger_api :index do 
         summary "Fetches the list of all connected users (id, email, latitude, longitude)"
-        param :path, :nothing, :string, :optional
+        param :query, 'user[email]', :string, :required
+        param :query, 'user[authentication_token]', :string, :required
         response :unauthorized
         response :not_acceptable
     end
     swagger_api :update do 
         summary "Change the latitude and longitude of a user"
-        param :path, :id, :integer, :required, "User Id"
+        param :path, 'id', :integer, :required
+        param :form, 'user[email]', :string, :required
+        param :form, 'user[authentication_token]', :string, :required
         param :form, 'user[latitude]', :string, :optional
         param :form, 'user[longitude]', :string, :optional
         response :unauthorized

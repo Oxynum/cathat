@@ -1,7 +1,7 @@
 {
   "apiVersion": "0.1",
   "swaggerVersion": "1.2",
-  "basePath": "http://cathat.herokuapp.com/",
+  "basePath": "http://0.0.0.0:3000/",
   "resourcePath": "users",
   "apis": [
     {
@@ -9,7 +9,20 @@
       "operations": [
         {
           "parameters": [
-
+            {
+              "paramType": "query",
+              "name": "user[email]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "user[authentication_token]",
+              "type": "string",
+              "description": null,
+              "required": true
+            }
           ],
           "summary": "Fetches the list of all connected users (id, email, latitude, longitude)",
           "responseMessages": [
@@ -36,7 +49,21 @@
               "paramType": "path",
               "name": "id",
               "type": "integer",
-              "description": "User Id",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[email]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[authentication_token]",
+              "type": "string",
+              "description": null,
               "required": true
             },
             {
@@ -79,7 +106,21 @@
               "paramType": "path",
               "name": "id",
               "type": "integer",
-              "description": "User Id",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[email]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[authentication_token]",
+              "type": "string",
+              "description": null,
               "required": true
             },
             {

@@ -1,7 +1,7 @@
 {
   "apiVersion": "0.1",
   "swaggerVersion": "1.2",
-  "basePath": "http://cathat.herokuapp.com/",
+  "basePath": "http://0.0.0.0:3000/",
   "resourcePath": "registrations",
   "apis": [
     {
@@ -11,59 +11,66 @@
           "parameters": [
             {
               "paramType": "form",
-              "name": "gender",
+              "name": "user[gender]",
               "type": "string",
               "description": null,
               "required": false
             },
             {
               "paramType": "form",
-              "name": "email",
+              "name": "user[email]",
               "type": "string",
               "description": null,
               "required": true
             },
             {
               "paramType": "form",
-              "name": "pseudo",
+              "name": "user[pseudo]",
               "type": "string",
               "description": null,
               "required": true
             },
             {
               "paramType": "form",
-              "name": "birth_date",
-              "type": "string",
+              "name": "user[birth_date]",
+              "type": "date",
               "description": null,
               "required": true
             },
             {
               "paramType": "form",
-              "name": "first_name",
+              "name": "user[first_name]",
               "type": "string",
               "description": null,
               "required": false
             },
             {
               "paramType": "form",
-              "name": "last_name",
+              "name": "user[last_name]",
               "type": "string",
               "description": null,
               "required": false
             },
             {
               "paramType": "form",
-              "name": "password",
+              "name": "user[password]",
               "type": "string",
               "description": null,
               "required": true
             },
             {
               "paramType": "form",
-              "name": "password_confirmation",
+              "name": "user[password_confirmation]",
               "type": "string",
               "description": null,
               "required": true
+            }
+          ],
+          "summary": "Create a user",
+          "responseMessages": [
+            {
+              "code": 406,
+              "message": "Not Acceptable"
             }
           ],
           "method": "post",

@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook, :twitter, :google_oauth2]
   validates_presence_of :pseudo, :birth_date
 
+  before_create :generate_token
+
   def connect!
     self.update_attribute :connected, true
   end
@@ -47,6 +49,20 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
+    end
+  end
+
+  def change_token
+    generate_token
+    save
+  end
+
+  protected
+
+  def generate_token
+    self.authentication_token = loop do
+      random_token = SecureRandom.urlsafe_base64(nil, false)
+      break random_token unless User.exists?(authentication_token: random_token)
     end
   end
 end

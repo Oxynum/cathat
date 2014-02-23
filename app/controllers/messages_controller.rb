@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+    before_filter :authenticate_user_from_token!
     before_filter :authenticate_user!
 
 	swagger_controller :users, "Messages Management"
@@ -6,6 +7,8 @@ class MessagesController < ApplicationController
 		summary "Get the last 5 messages in the area specified"
 		param :form, :latitude, :string, :required
 		param :form, :longitude, :string, :required
+		param :form, 'user[email]', :string, :required
+		param :form, 'user[authentication_token]', :string, :required
 	end
     
     def index
