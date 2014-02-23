@@ -1,20 +1,22 @@
-<h2>Sign in</h2>
+<section class="sign-in">
+	<article class="sign-up">		
+		<%= render "users/shared/links" %>
+	</article>
+	<article class="sign-in-classic">
+		<h2>Supercat</h2>
+		<%= form_for(resource, :as => resource_name, :class => 'login-form', :url => session_path(resource_name)) do |f| %>
+				<%= f.email_field :email, :autofocus => true, :placeholder => 'Email or Pseudo', :class => 'input pseudo' %>
+				<%= f.password_field :password, :placeholder => 'Password', :class => 'input password' %>
+				<%= f.submit "Sign in", :class => 'button submit login' %>
+		  <% if devise_mapping.rememberable? -%>
+		    <div class="remember"><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+		  <% end -%>		  
+		<% end %>
+	</article>
+	<article class="sign-in-social">
+		<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
+		<%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>
+		<%= link_to "Sign in with Google +", user_omniauth_authorize_path(:google_oauth2) %>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
-
-  <div><%= f.submit "Sign in" %></div>
-<% end %>
-<%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-<%= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>
-<%= link_to "Sign in with Google +", user_omniauth_authorize_path(:google_oauth2) %>
-
-<%= render "users/shared/links" %>
+	</article>
+</section>

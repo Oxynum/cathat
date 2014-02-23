@@ -1,0 +1,26 @@
+html {
+    body {
+
+    	font-family: $font;
+        .sign-in {
+
+            @include background-size( 625px 309px );
+            @include position( absolute, 0px 0px 0px 0px );
+            background: url("map_login.png") no-repeat center $dark;
+            article{
+            	&.sign-in-classic{            		
+	            	h2{
+	            		font-family: $font;
+	            		margin:0;
+	            		paddung:0;
+	            		font-weight: 300;
+	            		color:#f0f0f0;
+	            		text-align: center;
+	            		text-transform: uppercase;
+	            		margin-bottom:2em;
+	            	}
+            	}
+            }
+        }
+    }
+}

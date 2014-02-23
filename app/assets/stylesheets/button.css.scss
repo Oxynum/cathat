@@ -1,0 +1,41 @@
+$radius : "5px";
+$light : #fff;
+.button, button{
+	@include appearance( none );
+	border-radius : 5px;
+	border:0 none;
+	text-transform: uppercase;
+	display:block;
+	width:90%;
+	margin:1em auto;
+	font-size:.8em;
+	height:4em;
+	cursor:pointer;
+	&.submit{
+		background:rgba(255,255,255,0.1);
+		color:$light;
+	}
+	&.submit:hover{
+		background:rgba(255,255,255,0.5);
+		color:$dark;
+	}
+}
+.input, input[type=text]{
+	@include appearance( none );
+	border-radius : 5px;
+	border:0 none;
+	text-transform: uppercase;
+	display:block;
+	width:90%;
+	margin:1em auto;
+	font-size:.8em;
+	height:4em;
+	cursor:pointer;
+	background:rgba(0,0,0,0.3);
+	color:$light;
+	text-indent:1em;
+	&:hover{
+		background:rgba(0,0,0,0.9);
+		color:$light;
+	}
+}
