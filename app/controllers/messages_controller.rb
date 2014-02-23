@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+    before_filter :authenticate_user!
 
     def index
         @messages = Message.message_in_area(params[:latitude], params[:longitude], current_user.message_zone).main_information
@@ -7,9 +8,4 @@ class MessagesController < ApplicationController
 		  format.json { render json: @users}
         end
     end
-
-    def new
-    	@message = Message.new
-    end
-
 end

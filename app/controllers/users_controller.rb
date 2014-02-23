@@ -2,12 +2,12 @@ class UsersController < ApplicationController
 
     before_filter :authenticate_user!
 
-    def update_position
-        current_user.update_attributes user_params
+    def update
+        User.where(id: params[:id]).first.update_attributes user_params
         render nothing: true
     end
 
-    def connected
+    def index
     	@users = User.connected.select(:id, :email, :latitude, :longitude)
         render json: @users
     end
