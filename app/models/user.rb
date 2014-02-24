@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   before_create :generate_token
 
+
   def connect!
     self.update_attribute :connected, true
   end

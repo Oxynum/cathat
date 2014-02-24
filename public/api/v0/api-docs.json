@@ -1,22 +1,22 @@
 {
   "apiVersion": "0.1",
   "swaggerVersion": "1.2",
-  "basePath": "http://cathat.herokuapp.com/",
+  "basePath": "http://0.0.0.0:3000/",
   "apis": [
     {
-      "path": "http://cathat.herokuapp.com/api/users/sessions.{format}",
+      "path": "http://0.0.0.0:3000/api/users/sessions.{format}",
       "description": "User Session"
     },
     {
-      "path": "http://cathat.herokuapp.com/api/users/registrations.{format}",
+      "path": "http://0.0.0.0:3000/api/users/registrations.{format}",
       "description": "User Registration"
     },
     {
-      "path": "http://cathat.herokuapp.com/api/messages.{format}",
+      "path": "http://0.0.0.0:3000/api/messages.{format}",
       "description": "Messages Management"
     },
     {
-      "path": "http://cathat.herokuapp.com/api/users.{format}",
+      "path": "http://0.0.0.0:3000/api/users.{format}",
       "description": "User Management"
     }
   ]

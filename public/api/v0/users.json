@@ -1,7 +1,7 @@
 {
   "apiVersion": "0.1",
   "swaggerVersion": "1.2",
-  "basePath": "http://cathat.herokuapp.com/",
+  "basePath": "http://0.0.0.0:3000/",
   "resourcePath": "users",
   "apis": [
     {
@@ -53,32 +53,11 @@
               "required": true
             },
             {
-              "paramType": "form",
-              "name": "user[email]",
-              "type": "string",
+              "paramType": "body",
+              "name": "body",
+              "type": "user_position",
               "description": null,
               "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "user[authentication_token]",
-              "type": "string",
-              "description": null,
-              "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "user[latitude]",
-              "type": "string",
-              "description": null,
-              "required": false
-            },
-            {
-              "paramType": "form",
-              "name": "user[longitude]",
-              "type": "string",
-              "description": null,
-              "required": false
             }
           ],
           "summary": "Change the latitude and longitude of a user",
@@ -110,32 +89,11 @@
               "required": true
             },
             {
-              "paramType": "form",
-              "name": "user[email]",
-              "type": "string",
+              "paramType": "body",
+              "name": "body",
+              "type": "user_position",
               "description": null,
               "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "user[authentication_token]",
-              "type": "string",
-              "description": null,
-              "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "user[latitude]",
-              "type": "string",
-              "description": null,
-              "required": false
-            },
-            {
-              "paramType": "form",
-              "name": "user[longitude]",
-              "type": "string",
-              "description": null,
-              "required": false
             }
           ],
           "summary": "Change the latitude and longitude of a user",
@@ -154,5 +112,51 @@
         }
       ]
     }
-  ]
+  ],
+  "models": {
+    "user_position": {
+      "id": "user_position",
+      "required": [
+        "id",
+        "user"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "User Id"
+        },
+        "user": {
+          "type": "user_credentials",
+          "description": "The user credentials"
+        },
+        "latitude": {
+          "type": "float",
+          "description": "The latitude of the user"
+        },
+        "longitude": {
+          "type": "float",
+          "description": "The longitude of the user"
+        }
+      },
+      "description": "Describe the current position of a user"
+    },
+    "user_credentials": {
+      "id": "user_credentials",
+      "required": [
+        "email",
+        "authentication_token"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "User email"
+        },
+        "authentication_token": {
+          "type": "string",
+          "description": "User authentication_token"
+        }
+      },
+      "description": "The user login information"
+    }
+  }
 }
