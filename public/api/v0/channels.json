@@ -1,0 +1,244 @@
+{
+  "apiVersion": "0.1",
+  "swaggerVersion": "1.2",
+  "basePath": "http://0.0.0.0:3000/",
+  "resourcePath": "channels",
+  "apis": [
+    {
+      "path": "channels",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "user[email]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "user[authentication_token]",
+              "type": "string",
+              "description": null,
+              "required": true
+            }
+          ],
+          "summary": "Retreive all channels",
+          "method": "get",
+          "nickname": "Channels#index"
+        }
+      ]
+    },
+    {
+      "path": "channels",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "user[email]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[authentication_token]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "channel[title]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "channel[longitude]",
+              "type": "float",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "channel[latitude]",
+              "type": "float",
+              "description": null,
+              "required": true
+            }
+          ],
+          "summary": "Creates a channel",
+          "method": "post",
+          "nickname": "Channels#create"
+        }
+      ]
+    },
+    {
+      "path": "channels/{id}",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "user[email]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "user[authentication_token]",
+              "type": "string",
+              "description": null,
+              "required": true
+            }
+          ],
+          "summary": "Retrieve the information of a channel",
+          "method": "get",
+          "nickname": "Channels#show"
+        }
+      ]
+    },
+    {
+      "path": "channels/{id}",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "body",
+              "name": "body",
+              "type": "channel",
+              "description": null,
+              "required": true
+            }
+          ],
+          "summary": "Update the position of a channel",
+          "method": "patch",
+          "nickname": "Channels#update"
+        }
+      ]
+    },
+    {
+      "path": "channels/{id}",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "body",
+              "name": "body",
+              "type": "channel",
+              "description": null,
+              "required": true
+            }
+          ],
+          "summary": "Update the position of a channel",
+          "method": "put",
+          "nickname": "Channels#update"
+        }
+      ]
+    },
+    {
+      "path": "channels/{id}",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[email]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[authentication_token]",
+              "type": "string",
+              "description": null,
+              "required": true
+            }
+          ],
+          "summary": "Deletes a channel",
+          "method": "delete",
+          "nickname": "Channels#destroy"
+        }
+      ]
+    }
+  ],
+  "models": {
+    "channel": {
+      "id": "channel",
+      "required": [
+        "user"
+      ],
+      "properties": {
+        "latitude": {
+          "type": "float",
+          "description": "The latitude of a channel"
+        },
+        "longitude": {
+          "type": "float",
+          "description": "The longitude of a channel"
+        },
+        "creator_id": {
+          "type": "integer",
+          "description": "The id of the owner of the channel"
+        },
+        "user": {
+          "type": "user_credentials",
+          "description": "The user credentials"
+        }
+      },
+      "description": "The editable information of a channel"
+    },
+    "user_credentials": {
+      "id": "user_credentials",
+      "required": [
+        "email",
+        "authentication_token"
+      ],
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "User email"
+        },
+        "authentication_token": {
+          "type": "string",
+          "description": "User authentication_token"
+        }
+      },
+      "description": "The user login information"
+    }
+  }
+}

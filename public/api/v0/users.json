@@ -53,6 +53,49 @@
               "required": true
             },
             {
+              "paramType": "query",
+              "name": "user[email]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "user[authentication_token]",
+              "type": "string",
+              "description": null,
+              "required": true
+            }
+          ],
+          "summary": "Get the information of a user",
+          "responseMessages": [
+            {
+              "code": 401,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "message": "Not Acceptable"
+            }
+          ],
+          "method": "get",
+          "nickname": "Users#show"
+        }
+      ]
+    },
+    {
+      "path": "users/{id}",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": null,
+              "required": true
+            },
+            {
               "paramType": "body",
               "name": "body",
               "type": "user_position",
@@ -117,14 +160,9 @@
     "user_position": {
       "id": "user_position",
       "required": [
-        "id",
         "user"
       ],
       "properties": {
-        "id": {
-          "type": "integer",
-          "description": "User Id"
-        },
         "user": {
           "type": "user_credentials",
           "description": "The user credentials"

@@ -30,9 +30,32 @@ class UsersController < ApplicationController
         response :unauthorized
         response :not_acceptable
     end
-    
 
+    swagger_api :show do
+        summary "Get the information of a user"
+        param :path, :id, :integer, :required
+        param :query, 'user[email]', :string, :required
+        param :query, 'user[authentication_token]', :string, :required
+    end
 
+    swagger_api :subscribe_to_channel do
+        summary "Subscribe to the channel whose id is specified"
+        param :form, 'user[email]', :string, :required
+        param :form, 'user[authentication_token]', :string, :required
+        param :form, 'channel[id]', :integer, :required
+        response :unauthorized
+        response :not_acceptable
+    end
+
+    swagger_api :unsubscribe_from_channel do
+        summary "Subscribe to the channel whose id is specified"
+        param :form, 'user[email]', :string, :required
+        param :form, 'user[authentication_token]', :string, :required
+        param :form, 'channel[id]', :integer, :required
+        response :unauthorized
+        response :not_acceptable
+    end
+     
     def update
         if User.where(id: params[:id]).first.update_attributes user_params
             render nothing: true
@@ -46,10 +69,26 @@ class UsersController < ApplicationController
         render json: @users
     end
 
+    def show 
+        render json: User.where(id: params[:id]).first
+    end
+
+    def subscribe_to_channel
+        current_user.channels << Channel.where(id: params[:channel][:id]).first
+        current_user.save
+        render text: "success", status: 201
+    end
+
+    def unsubscribe_from_channel
+        current_user.channel.delete Channel.where(id: params[:channel][:id]).first
+        current_user.save
+        render text: "success"
+    end
+
     private
 
     def user_params
-        params.permit :latitude, :longitude
+        params.require(:user).permit :email, :authentication_token, :latitude, :longitude
     end
 
 end
