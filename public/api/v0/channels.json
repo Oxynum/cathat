@@ -1,9 +1,103 @@
 {
   "apiVersion": "0.1",
   "swaggerVersion": "1.2",
-  "basePath": "http://0.0.0.0:3000/",
+  "basePath": "http://supercat.oxynum.fr/",
   "resourcePath": "channels",
   "apis": [
+    {
+      "path": "users/{user_id}/channels",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "user_id",
+              "type": "integer",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "user[email]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[authentication_token]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "channel[title]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "channel[longitude]",
+              "type": "float",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "channel[latitude]",
+              "type": "float",
+              "description": null,
+              "required": true
+            }
+          ],
+          "summary": "Creates a channel or add a user to the channel",
+          "method": "post",
+          "nickname": "Channels#create"
+        }
+      ]
+    },
+    {
+      "path": "users/{user_id}/channels/{id}",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "user_id",
+              "type": "integer",
+              "description": null,
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "user[email]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[authentication_token]",
+              "type": "string",
+              "description": null,
+              "required": true
+            }
+          ],
+          "summary": "Deletes a channel or remove user from a channel",
+          "method": "delete",
+          "nickname": "Channels#destroy"
+        }
+      ]
+    },
     {
       "path": "channels",
       "operations": [
@@ -71,7 +165,7 @@
               "required": true
             }
           ],
-          "summary": "Creates a channel",
+          "summary": "Creates a channel or add a user to the channel",
           "method": "post",
           "nickname": "Channels#create"
         }
@@ -189,7 +283,7 @@
               "required": true
             }
           ],
-          "summary": "Deletes a channel",
+          "summary": "Deletes a channel or remove user from a channel",
           "method": "delete",
           "nickname": "Channels#destroy"
         }

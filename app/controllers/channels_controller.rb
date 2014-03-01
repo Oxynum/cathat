@@ -24,14 +24,16 @@ class ChannelsController < ApplicationController
 	end
 
 	swagger_api :destroy do
-		summary "Deletes a channel"
+		summary "Deletes a channel or remove user from a channel"
 		param :path, :id, :integer, :required
+        param :path, :user_id, :integer, :optional
     	param :form, 'user[email]', :string, :required
 		param :form, 'user[authentication_token]', :string, :required
 	end
 
 	swagger_api :create do 
-		summary "Creates a channel"
+		summary "Creates a channel or add a user to the channel"
+        param :path, :user_id, :integer, :optional
     	param :form, 'user[email]', :string, :required
 		param :form, 'user[authentication_token]', :string, :required
 		param :form, 'channel[title]', :string, :required
@@ -39,20 +41,6 @@ class ChannelsController < ApplicationController
 		param :form, 'channel[latitude]', :float, :required
 	end
 
-    swagger_api :add_user do
-        description "Add a user to this channel"
-        param :path, :id, :integer, :required
-        param :form, 'user[email]', :string, :required
-        param :form, 'user[authentication_token]', :string, :required
-    end
-
-    swagger_api :remove_user do
-        description "Remove a user from this channel"
-        param :path, :id, :integer, :required
-        param :form, 'user[email]', :string, :required
-        param :form, 'user[authentication_token]', :string, :required
-    end
-    
 	swagger_model :channel do
 		description "The editable information of a channel"
 		property :latitude, :float, :optional, "The latitude of a channel"
@@ -90,7 +78,12 @@ class ChannelsController < ApplicationController
     def destroy
     	@channel = Channel.where(id: params[:id]).first
     	if current_user == @channel.creator
-    		@channel.destroy
+            if params[:user_id] && current_user == User.where(id: params[:user_id])
+              @channel.subscribers.delete current_user
+              @channel.save
+            elsif params[:user_id].nil?
+              @channel.destroy
+            end
     		render text: "success"
     	else
     		render text: "Not authorized", status: 401
@@ -98,24 +91,11 @@ class ChannelsController < ApplicationController
     end	
 
     def create
-    	@channel = Channel.new create_channel_params
+    	@channel = Channel.first_or_create create_channel_params
     	@channel.creator = current_user
+        @channel.subscribers << current_user
     	@channel.save
     	render json: @channel
-    end
-
-    def add_user
-        @channel = Channel.where(id: params[:id]).first
-        @channel.subscribers << current_user
-        @channe.save
-        render text: "success", status: 201
-    end
-
-    def remove_user
-        @channel = Channel.where(id: params[:id]).first
-        @channel.subscribers.delete current_user
-        @channel.save
-        render text: "success"
     end
 
     private

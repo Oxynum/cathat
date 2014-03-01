@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   GENDERS = ["male", "female", "transgender", "unknown", "animal", "vegetable", "alien"].freeze
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  devise :omniauthable, :omniauth_providers => [:facebook, :twitter, :google_oauth2]
   validates_presence_of :pseudo, :birth_date
   has_and_belongs_to_many :channels
 

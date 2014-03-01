@@ -1,7 +1,7 @@
 {
   "apiVersion": "0.1",
   "swaggerVersion": "1.2",
-  "basePath": "http://0.0.0.0:3000/",
+  "basePath": "http://supercat.oxynum.fr/",
   "resourcePath": "users",
   "apis": [
     {
@@ -68,16 +68,6 @@
             }
           ],
           "summary": "Get the information of a user",
-          "responseMessages": [
-            {
-              "code": 401,
-              "message": "Unauthorized"
-            },
-            {
-              "code": 406,
-              "message": "Not Acceptable"
-            }
-          ],
           "method": "get",
           "nickname": "Users#show"
         }

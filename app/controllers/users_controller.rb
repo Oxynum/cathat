@@ -74,15 +74,18 @@ class UsersController < ApplicationController
     end
 
     def subscribe_to_channel
-        current_user.channels << Channel.where(id: params[:channel][:id]).first
+        current_user.channels << Channel.where(id: params[:channel_id]).first
         current_user.save
         render text: "success", status: 201
     end
 
     def unsubscribe_from_channel
-        current_user.channel.delete Channel.where(id: params[:channel][:id]).first
-        current_user.save
-        render text: "success"
+        if current_user == User.where(id: params[:id])
+            current_user.channel.delete Channel.where(id: params[:channel_id]).first
+            current_user.save
+            render text: "success"
+        end
+        render text: "unauthorized", status: 401
     end
 
     private

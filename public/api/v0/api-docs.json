@@ -1,27 +1,27 @@
 {
   "apiVersion": "0.1",
   "swaggerVersion": "1.2",
-  "basePath": "http://0.0.0.0:3000/",
+  "basePath": "http://supercat.oxynum.fr/",
   "apis": [
     {
-      "path": "http://0.0.0.0:3000/api/users/sessions.{format}",
+      "path": "http://supercat.oxynum.fr/api/users/sessions.{format}",
       "description": "User Session"
     },
     {
-      "path": "http://0.0.0.0:3000/api/users/registrations.{format}",
+      "path": "http://supercat.oxynum.fr/api/users/registrations.{format}",
       "description": "User Registration"
     },
     {
-      "path": "http://0.0.0.0:3000/api/messages.{format}",
+      "path": "http://supercat.oxynum.fr/api/messages.{format}",
       "description": "Messages Management"
     },
     {
-      "path": "http://0.0.0.0:3000/api/users.{format}",
-      "description": "User Management"
+      "path": "http://supercat.oxynum.fr/api/channels.{format}",
+      "description": "User Channels"
     },
     {
-      "path": "http://0.0.0.0:3000/api/channels.{format}",
-      "description": "User Channels"
+      "path": "http://supercat.oxynum.fr/api/users.{format}",
+      "description": "User Management"
     }
   ]
 }
