@@ -38,4 +38,3 @@ gem 'websocket-rails'
 gem 'formtastic'
 gem 'rails_12factor', group: :production
 gem 'swagger-docs', :git => "git@github.com:scienceexchange/swagger-docs.git", :branch => "add_models_support"
-ruby "2.0.0"
