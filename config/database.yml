@@ -11,4 +11,6 @@ test:
 
 production:
   <<: *common
+  username: supercat
+  password: supercat-qwertyuiop
   database: cathat_prod
