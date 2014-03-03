@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:scienceexchange/swagger-docs.git
+  remote: https://github.com/scienceexchange/swagger-docs.git
   revision: bc5f787ff2554366d88dc6280eaf81649b3e03de
   branch: add_models_support
   specs:
