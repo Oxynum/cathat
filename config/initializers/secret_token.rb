@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Cathat::Application.config.secret_key_base = 'fad1c1183ff81eec7385c1dba1db2143c2cb4eb561c3ac43ee7e9f136536d225be40b25bf533095e29c5391343ebcd9ad744e568282c3c09c1d3af7539166b4e'
+SuperCat::Application.config.secret_key_base = 'fad1c1183ff81eec7385c1dba1db2143c2cb4eb561c3ac43ee7e9f136536d225be40b25bf533095e29c5391343ebcd9ad744e568282c3c09c1d3af7539166b4e'

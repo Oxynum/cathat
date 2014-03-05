@@ -7,11 +7,7 @@ class ChatController < WebsocketRails::BaseController
   end
 
   def message_received
-    new_message = Message.new message
-    new_message.author = current_user
-    new_message.save
-    message[:email] = current_user.email
-    message[:created_at] =  new_message.created_at
+    p 'toto'
   	broadcast_message 'message_received', message
   end
 

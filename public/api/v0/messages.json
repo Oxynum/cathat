@@ -22,25 +22,70 @@
               "type": "string",
               "description": null,
               "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "user[email]",
-              "type": "string",
-              "description": null,
-              "required": true
-            },
-            {
-              "paramType": "form",
-              "name": "user[authentication_token]",
-              "type": "string",
-              "description": null,
-              "required": true
             }
           ],
           "summary": "Get the last 5 messages in the area specified",
           "method": "get",
           "nickname": "Messages#index"
+        }
+      ]
+    },
+    {
+      "path": "messages",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "message[latitude]",
+              "type": "float",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "message[longitude]",
+              "type": "float",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "message[body]",
+              "type": "string",
+              "description": null,
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "message[channel_id]",
+              "type": "integer",
+              "description": null,
+              "required": false
+            }
+          ],
+          "summary": "Create a new message",
+          "method": "post",
+          "nickname": "Messages#create"
+        }
+      ]
+    },
+    {
+      "path": "messages/{id}",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": null,
+              "required": true
+            }
+          ],
+          "summary": "Get the information of a specific message",
+          "method": "get",
+          "nickname": "Messages#show"
         }
       ]
     }

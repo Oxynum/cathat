@@ -1,6 +1,6 @@
-Cathat::Application.routes.draw do
+SuperCat::Application.routes.draw do
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations"}
-  resources :messages, only: :index
+  resources :messages, only: [:index, :create, :show, :update]
   resources :users, only: [:update, :index, :show] do 
   	resources :channels, only: [:create, :destroy]
   end

@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Cathat::Application.load_tasks
+SuperCat::Application.load_tasks
