@@ -1,3 +1,4 @@
+require 'digest/md5'
 class Users::SessionsController < Devise::SessionsController
 
 	prepend_before_filter :require_no_authentication, :only => [:create ]
@@ -26,16 +27,16 @@ class Users::SessionsController < Devise::SessionsController
 	    if resource.valid_password?(params[:user][:password])
 	      sign_in("user", resource)
 	      resource.change_token
-	      render :json=> {:success=>true, :auth_token=>resource.authentication_token, :email=>resource.email}
+	      render :json=> {:success=>true, :auth_token=>resource.authentication_token, :email=>resource.email, :email_md5 => Digest::MD5.hexdigest(resource.email), :id =>resource.id}
 	      return
 	    end
 	    invalid_login_attempt
  	end
 
  	def destroy
-    	sign_out(resource_name)
-    	resource.change_token
-  	end
+  	sign_out(resource_name)
+  	resource.change_token
+	end
 
 
 	protected
