@@ -19,11 +19,11 @@ class ApplicationController < ActionController::Base
 		headers['Access-Control-Max-Age'] = "1728000"
 	end
   
-  def authenticate_user_from_token! 
+  def authenticate_user_from_token! authentication_token=nil
     # Notice how we use Devise.secure_compare to compare the token
     # in the database with the token given in the params, mitigating
     # timing attacks.
-    authentication_token = request.headers['X-CSRF-Token']
+    authentication_token ||= request.headers['X-CSRF-Token']
     user = User.find_by_authentication_token authentication_token
     if user && Devise.secure_compare(user.authentication_token, authentication_token)
       sign_in user, store: false

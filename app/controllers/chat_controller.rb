@@ -7,7 +7,6 @@ class ChatController < WebsocketRails::BaseController
   end
 
   def message_received
-    p 'toto'
   	broadcast_message 'message_received', message
   end
 
@@ -23,8 +22,13 @@ class ChatController < WebsocketRails::BaseController
 
   private
   def ensure_logged_in!
+    if message[:token]
+      authenticate_user_from_token! message[:token]
+      message.delete :token
+    end
   	if current_user.nil?
   		trigger_failure({error: "The user is not logged in."})
   	end
   end
+
 end
