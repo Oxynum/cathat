@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   GENDERS = ["male", "female", "transgender", "unknown", "animal", "vegetable", "alien"].freeze
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates_presence_of :pseudo, :birth_date
+  # validates_presence_of :pseudo, :birth_date
   has_and_belongs_to_many :channels
 
   before_create :generate_token
@@ -25,7 +25,68 @@ class User < ActiveRecord::Base
     save
   end
 
+  def self.find_or_create_from_auth_hash auth_hash
+    send((auth_hash['provider'] + "_auth").to_sym, auth_hash)
+  end
+
   protected
+
+  def self.facebook_auth auth_hash
+    @user = find_provider_user auth_hash
+    return @user if @user
+    generated_password = Devise.friendly_token.first(8)
+    @user = User.create(
+      email:                  auth_hash['info']['email'],
+      password:               generated_password,
+      password_confirmation:  generated_password,
+      pseudo:                 auth_hash['info']['nickname'],
+      first_name:             auth_hash['info']['first_name'],
+      last_name:              auth_hash['info']['last_name'],
+      gender:                 auth_hash['extra']['raw_info']['gender'],
+      provider:               auth_hash['provider'],
+      uid:                    auth_hash['uid'],
+      provider_token:         auth_hash['credentials']['token']
+    )
+  end
+
+  def self.twitter_auth auth_hash
+    @user = find_provider_user auth_hash
+    return @user if @user
+    generated_password = Devise.friendly_token.first(8)
+    @user = User.create(
+      email:                  'no-adress@oxynum.fr',
+      password:               generated_password,
+      password_confirmation:  generated_password,
+      pseudo:                 auth_hash['info']['nickname'],
+      first_name:             auth_hash['info']['name'].split[0],
+      last_name:              auth_hash['info']['name'].split[1..-1].join,
+      provider:               auth_hash['provider'],
+      uid:                    auth_hash['uid'],
+      provider_token:         auth_hash['credentials']['token']
+    )
+  end
+
+  def self.google_oauth2_auth auth_hash
+    @user = find_provider_user auth_hash
+    return @user if @user
+    generated_password = Devise.friendly_token.first(8)
+    @user = User.create(
+      email:                  auth_hash['info']['email'],
+      password:               generated_password,
+      password_confirmation:  generated_password,
+      first_name:             auth_hash['info']['first_name'],
+      last_name:              auth_hash['info']['last_name'],
+      gender:                 auth_hash['extra']['raw_info']['gender'],
+      birth_date:             auth_hash['extra']['raw_info']['birthday'] && Time.parse(auth_hash['extra']['raw_info']['birthday']),
+      provider:               auth_hash['provider'],
+      uid:                    auth_hash['uid'],
+      provider_token:         auth_hash['credentials']['token']
+    )
+  end
+
+  def self.find_provider_user auth_hash
+    where(provider: auth_hash[:provider], uid: auth_hash[:uid]).first
+  end
 
   def generate_token
     self.authentication_token = loop do

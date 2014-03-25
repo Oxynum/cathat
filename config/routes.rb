@@ -11,4 +11,5 @@ SuperCat::Application.routes.draw do
   end
   get '/api/*path', to: 'api#get', defaults: { format: 'json' }
   match '/*path' => 'application#cors_preflight_check', :via => :options
+  get '/auth/:provider/callback', to: 'omniauth/sessions#create'
 end
