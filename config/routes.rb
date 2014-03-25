@@ -1,4 +1,6 @@
 SuperCat::Application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   devise_for :users, controllers: { sessions: "users/sessions", registrations: "users/registrations"}
   resources :messages, only: [:index, :create, :show, :update]
   resources :users, only: [:update, :index, :show] do 
