@@ -11,18 +11,34 @@ class ChatController < WebsocketRails::BaseController
   end
 
   def connect
-    current_user.connect!
-    $connected_users[current_user.id]+=1
+    #What to do when the user connects
   end
 
   def disconnect
-    $connected_users[current_user.id]-=1
-    current_user.disconnect! if $connected_users[current_user.id] == 0
+    #And when he disconnects (maybe informing other users ?)
+  end
+
+  def create_user_channel
+    channel = WebsocketRails['user_#{current_user.id}'].make_private
+  end
+
+  def authorize_channels
+    channel = WebsocketRails[message[:channel]]
+    p channel
+    if channel.name.split('_')[1] == current_user.id
+      accept_channel
+    else
+      deny_channel message: "Authorization failed"
+    end
+  end
+
+  def private_message
+    WebsocketRails['user_' + message[:user_id]].trigger('message_received', message[:message])
   end
 
   private
   def ensure_logged_in!
-    if message[:token]
+    if message.respond_to?(:[]) && message[:token]
       authenticate_user_from_token! message[:token]
       message.delete :token
     end

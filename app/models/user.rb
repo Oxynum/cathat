@@ -54,7 +54,6 @@ class User < ActiveRecord::Base
     return @user if @user
     generated_password = Devise.friendly_token.first(8)
     @user = User.create(
-      email:                  'no-adress@oxynum.fr',
       password:               generated_password,
       password_confirmation:  generated_password,
       pseudo:                 auth_hash['info']['nickname'],
@@ -93,5 +92,9 @@ class User < ActiveRecord::Base
       random_token = SecureRandom.urlsafe_base64(nil, false)
       break random_token unless User.exists?(authentication_token: random_token)
     end
+  end
+
+  def email_required?
+    true unless provider == "twitter"
   end
 end
