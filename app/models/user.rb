@@ -25,6 +25,11 @@ class User < ActiveRecord::Base
     save
   end
 
+  def users_in_area
+    User.where('( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) < message_zone', 
+    latitude, longitude, latitude)
+  end
+
   def self.find_or_create_from_auth_hash auth_hash
     send((auth_hash['provider'] + "_auth").to_sym, auth_hash)
   end

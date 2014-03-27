@@ -7,7 +7,9 @@ class ChatController < WebsocketRails::BaseController
   end
 
   def message_received
-  	broadcast_message 'message_received', message
+    current_user.users_in_area(50).pluck(:id).each do |id| 
+      WebsocketRails["user_#{id}"].trigger 'message_received', message
+    end
   end
 
   def connect
