@@ -1,18 +1,18 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
-  swagger_controller :users_registrations, "User Registration"
-  swagger_api :create do
-  	param :form, 'user[gender]', :string, :optional
-  	param :form, 'user[email]', :string, :required
-  	param :form, 'user[pseudo]', :string, :required
-  	param :form, 'user[birth_date]', :date, :required
-  	param :form, 'user[first_name]', :string, :optional
-  	param :form, 'user[last_name]', :string, :optional
-  	param :form, 'user[password]', :string, :required
-  	param :form, 'user[password_confirmation]', :string, :required
-    summary "Create a user"
-    response :not_acceptable
-  end
+  # swagger_controller :users_registrations, "User Registration"
+  # swagger_api :create do
+  # 	param :form, 'user[gender]', :string, :optional
+  # 	param :form, 'user[email]', :string, :required
+  # 	param :form, 'user[pseudo]', :string, :required
+  # 	param :form, 'user[birth_date]', :date, :required
+  # 	param :form, 'user[first_name]', :string, :optional
+  # 	param :form, 'user[last_name]', :string, :optional
+  # 	param :form, 'user[password]', :string, :required
+  # 	param :form, 'user[password_confirmation]', :string, :required
+  #   summary "Create a user"
+  #   response :not_acceptable
+  # end
 
   def create
     user = User.new(sign_up_params)

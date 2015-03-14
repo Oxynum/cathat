@@ -3,10 +3,15 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   # validates_presence_of :pseudo, :birth_date
-  has_and_belongs_to_many :channels
+  has_many :subscriptions
+  has_many :channels, through: :subscriptions
 
   before_create :generate_token
 
+
+  def email_md5
+    Digest::MD5.hexdigest(email)
+  end
 
   def connect!
     self.update_attribute :connected, true
