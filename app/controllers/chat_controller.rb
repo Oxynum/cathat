@@ -1,5 +1,5 @@
 class ChatController < WebsocketRails::BaseController
-  before_filter :ensure_logged_in!
+  # before_filter :ensure_logged_in!
 
   def initialize_session
     # perform application setup here
@@ -26,7 +26,6 @@ class ChatController < WebsocketRails::BaseController
 
   def authorize_channels
     channel = WebsocketRails[message[:channel]]
-    p channel
     if channel.name.split('_')[1] == current_user.id
       accept_channel
     else
@@ -46,6 +45,7 @@ class ChatController < WebsocketRails::BaseController
     end
   	if current_user.nil?
   		trigger_failure({error: "The user is not logged in."})
+      raise "Not authorized"
   	end
   end
 

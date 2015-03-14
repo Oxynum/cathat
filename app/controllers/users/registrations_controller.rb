@@ -17,7 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     user = User.new(sign_up_params)
     if user.save
-      render :json=> user, :status=>201
+      render :json=> {:success=>true, :auth_token=>user.authentication_token, :email=>user.email, :email_md5 => Digest::MD5.hexdigest(user.email), :id =>user.id}, status: 201
       return
     else
       warden.custom_failure!

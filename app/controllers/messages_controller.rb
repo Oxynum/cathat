@@ -32,16 +32,10 @@ class MessagesController < ApplicationController
   end
 
   def create
-    @message = Message.new message_params
-    @message.author = current_user
-    @message.save
-    if @message.channel_id
-      channel = @message.channel_id
-    else
-      channel = :global
-    end
-    WebsocketRails[channel].trigger :message_received, @message
-    render json: @message
+    channel = Channel.find params[:channel_id]
+    @message = channel.messages.create(message_params.merge(author: current_user))
+    WebsocketRails["channel_#{channel.id}"].trigger :new_message, @message
+    render json: @message and return
   end
 
   def update
