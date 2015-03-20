@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
 	# 	param :form, :latitude, :string, :required
 	# 	param :form, :longitude, :string, :required
 	# end
- #  swagger_api :create do 
+ #  swagger_api :create do
  #    summary "Create a new message"
  #    param :form, 'message[latitude]', :float, :required
  #    param :form, 'message[longitude]', :float, :required
@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
  #    summary "Get the information of a specific message"
  #    param :path, :id, :integer, :required
  #  end
-    
+
   def index
     # @messages = Message.message_in_area(params[:latitude], params[:longitude], current_user.message_zone).main_information
 	  @messages = Message.all
@@ -49,7 +49,7 @@ class MessagesController < ApplicationController
   end
 
   private
-  def message_params 
-    params.require(:message).permit :latitude, :longitude, :body, :channel_id, :author_id
+  def message_params
+    params.require(:message).permit :latitude, :longitude, :body, :channel_id
   end
 end
