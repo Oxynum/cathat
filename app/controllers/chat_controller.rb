@@ -8,7 +8,7 @@ class ChatController < WebsocketRails::BaseController
 
   def message_received
     current_user.users_in_area(50).pluck(:id).each do |id| 
-      WebsocketRails["user_#{id}"].trigger 'message_received', message
+      WebsocketRails["user_#{id}"].trigger 'message_received', message.as_json(serializer: MessageSerializer)
     end
   end
 
