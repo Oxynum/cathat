@@ -34,7 +34,7 @@ class MessagesController < ApplicationController
   def create
     channel = Channel.find params[:channel_id]
     @message = channel.messages.create(message_params.merge(author: current_user))
-    WebsocketRails["channel_#{channel.id}"].trigger :new_message, @message
+    WebsocketRails["channel_#{channel.id}"].trigger :new_message, MessageSerializer.new(@message).as_json
     render json: @message and return
   end
 

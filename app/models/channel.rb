@@ -3,4 +3,5 @@ class Channel < ActiveRecord::Base
 	has_many :subscriptions
 	has_many :subscribers, through: :subscriptions, source: :user
 	has_many :messages
+  mount_uploader :image, ImageUploader
 end

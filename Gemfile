@@ -44,3 +44,6 @@ gem 'omniauth-twitter'
 gem "omniauth-google-oauth2"
 gem 'active_model_serializers'
 gem "airbrake"
+gem 'fog'
+gem 'mini_magick'
+gem 'carrierwave'
