@@ -47,6 +47,9 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    airbrake (4.1.0)
+      builder
+      multi_json
     arbre (1.0.3)
       activesupport (>= 3.0.0)
     arel (5.0.1.20140414130214)
@@ -255,6 +258,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activeadmin!
+  airbrake
   bourbon
   coffee-rails
   devise
