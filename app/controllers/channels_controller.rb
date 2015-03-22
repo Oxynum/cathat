@@ -96,15 +96,25 @@ class ChannelsController < ApplicationController
       else
       	@channel = Channel.create create_channel_params
         @channel.creator = current_user
+        doc = params[:channel][:image]
+        if doc
+          data = doc[:content]
+          data_index = data.index('base64') + 7
+          filedata = data.slice(data_index, data.length)
+          decoded_image = Base64.decode64(filedata)
+          s = FilelessIO.new(decoded_image)
+          s.original_filename = doc[:filename]
+          @channel.image = s
+        end
       end
       @channel.subscribers << current_user
-    	@channel.save
+    	@channel.save!
     	render json: @channel
     end
 
     private
     def create_channel_params
-    	params.require(:channel).permit(:latitude, :longitude, :title)
+    	params.require(:channel).permit(:latitude, :longitude, :title, :description)
     end
 
     def channel_params
