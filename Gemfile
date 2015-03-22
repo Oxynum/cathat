@@ -47,5 +47,4 @@ gem "airbrake"
 gem 'fog'
 gem 'mini_magick'
 gem 'carrierwave'
-gem 'rails_12factor'
 gem 'thin'
